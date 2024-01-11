@@ -4,6 +4,6 @@ resource "ncloud_network_interface" "kblee_ubuntu01_nic" {
     private_ip            = "10.0.240.6"
     
     access_control_groups = [
-        data.ncloud_vpc.msp.default_access_control_group_no
+        ncloud_access_control_group.acg.access_control_group_no
     ]
 }
