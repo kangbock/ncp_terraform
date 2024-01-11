@@ -4,14 +4,15 @@ resource "ncloud_server" "kblee_ubuntu_server01" {
   server_product_code       = data.ncloud_server_product.product_2core_8mem.id
   server_image_product_code = data.ncloud_server_image.ubuntu_image.id
   login_key_name            = ncloud_login_key.kblee_login_key.key_name
-  
+  init_script_no            = ncloud_init_script.server01_script.id
+
   network_interface {
     network_interface_no = ncloud_network_interface.kblee_ubuntu01_nic.id
-    order = 0
+    order                = 0
   }
-  
-  depends_on = [ 
-    ncloud_network_interface.kblee_ubuntu01_nic 
+
+  depends_on = [
+    ncloud_network_interface.kblee_ubuntu01_nic
   ]
 }
 
@@ -41,7 +42,7 @@ data "ncloud_server_product" "product_2core_8mem" {
     values = ["8GB"]
   }
 
-    filter {
+  filter {
     name   = "base_block_storage_size"
     values = ["50GB"]
   }
